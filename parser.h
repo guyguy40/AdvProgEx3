@@ -9,11 +9,13 @@ class Command;
 #include <string>
 #include <map>
 
+#include "symbolTable.h"
+
 class Parser {
 
 public:
     Parser() : commands() {}
-    void initializeMap();
+    void initializeMap(SymbolTable* symb);
     void parse(vector<vector<string>> lexed);
 
 private:

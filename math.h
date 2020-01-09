@@ -109,11 +109,11 @@ public:
 
 class Interpreter {
 public:
-    SymbolTable variables;
-    Interpreter();
+    Interpreter() : variables() {}
     double interpret(string exp);
 
 private:
+    SymbolTable variables;
     Expression* getOperatorExpression(char *&end, char *&curr, char c, Expression* leftSide);
     Expression* parse(char *&end, char *&curr);
 };

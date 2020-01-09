@@ -80,11 +80,11 @@ private:
 
 class VariableCommand : public Command {
 public:
-    VariableCommand() : exp(), symb() {}
+    VariableCommand(SymbolTable* symb) : exp() {symb = symb;}
     virtual double execute(vector<vector<string>> lexed, int line);
 private:
     ExpressionHandler exp;
-    SymbolTable symb;
+    SymbolTable* symb;
 };
 
 #endif

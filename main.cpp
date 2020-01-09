@@ -1,5 +1,6 @@
 #include "lexer.h"
 #include "parser.h"
+#include "symbolTable.h"
 
 class Command;
 
@@ -22,8 +23,10 @@ int main(int argc, char** argv) {
     vector<vector<string>> lines = lexer.lex(code);
     cout << "lexed!" << endl;
 
+    SymbolTable* symb = new SymbolTable();
+
     Parser parser = Parser();
-    parser.initializeMap();
+    parser.initializeMap(symb);
     parser.parse(lines);
     cout << "parsed!" << endl;
 

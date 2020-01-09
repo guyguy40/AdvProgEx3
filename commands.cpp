@@ -83,7 +83,7 @@ double VariableCommand::execute(vector<vector<string>> lexed, int line) {
         cout << "var value: " << val << endl;
         std::this_thread::sleep_for(std::chrono::seconds(3));
 
-        symb.valueBind(name, val);
+        symb->valueBind(name, val);
     }
     else {
         string toBind;
@@ -93,8 +93,8 @@ double VariableCommand::execute(vector<vector<string>> lexed, int line) {
         cout << "var value: " << toBind << endl;
         std::this_thread::sleep_for(std::chrono::seconds(3));
 
-        if(type == 1) symb.leftBind(name, toBind);
-        else {symb.rightBind(name, toBind);}
+        if(type == 1) symb->leftBind(name, toBind);
+        else {symb->rightBind(name, toBind);}
     }
     return 1;
 }

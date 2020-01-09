@@ -29,10 +29,10 @@ void Parser::parse(vector<vector<string>> lexed) {
     }
 }
 
-void Parser::initializeMap() {
+void Parser::initializeMap(SymbolTable* symb) {
     commands["Print"] = new PrintCommand();
     commands["Sleep"] = new SleepCommand();
-    commands["var"] = new VariableCommand();
+    commands["var"] = new VariableCommand(symb);
 
     WhileCommand* whCmd = new WhileCommand();
     whCmd->initializeParser(this);

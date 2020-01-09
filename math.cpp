@@ -63,8 +63,6 @@ double Div::calculate() {
 
 //part 2
 
-Interpreter::Interpreter() : variables() {}
-
 /*void getVariable(map<string, Expression*> &variables, string toVar) {
     /*converts a string of the format "name=value" to the variable with the name 'name' and the value 'value'.
     said variable is then added to the map 'variables' under the name 'name'
