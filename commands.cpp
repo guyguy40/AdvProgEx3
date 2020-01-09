@@ -2,6 +2,7 @@
 
 #include <chrono>
 #include <thread>
+#include <iostream>
 
 double DataServerCommand::execute(vector<vector<string>> lexed, int line) {
     //do later
@@ -68,26 +69,26 @@ double VariableCommand::execute(vector<vector<string>> lexed, int line) {
     if(lexed[line][pos+1] == "->") type = 2;
 
     if(type == 0) {
-        double val = this->exp.handleDouble(lexed[line][pos+2]);
-        this->symb.valueBind(name, val);
+        double val = exp.handleDouble(lexed[line][pos+2]);
+        symb.valueBind(name, val);
     }
     else {
         string toBind;
         if(lexed[line][pos+2] == "sim") toBind = lexed[line][pos+3].substr(1, lexed[line][pos+3].size() - 2);
         else {toBind = lexed[line][pos+2];}
-        if(type == 1) this->symb.leftBind(name, toBind);
-        else {this->symb.rightBind(name, toBind);}
+        if(type == 1) symb.leftBind(name, toBind);
+        else {symb.rightBind(name, toBind);}
     }
     return 1;
 }
 
 double ExpressionHandler::handleDouble(string exp) {
-    return this->inter.interpret(exp);
+    return inter.interpret(exp);
 }
 
 string ExpressionHandler::handleString(string exp) {
     if(exp[0] == '"') {
         return exp.substr(1, exp.size() - 2);
     }
-    return to_string(this->inter.interpret(exp));
+    return to_string(inter.interpret(exp));
 }

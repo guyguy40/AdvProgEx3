@@ -1,10 +1,11 @@
-
-#ifndef PROJECT_OPTABLE_H
-#define PROJECT_OPTABLE_H
+#ifndef PROJECT_SYMTABLE_H
+#define PROJECT_SYMTABLE_H
 
 #include <map>
+#include <string>
 
 using namespace std;
+
 class SymbolTable {
 
 public:
