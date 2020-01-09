@@ -33,7 +33,7 @@ double LoopCommand::execute(vector<vector<string>> lexed, int line) {
 
     while(loop(cond)) {
         cout << "running parse in loop!" << endl;
-        p.parse(commands);
+        p->parse(commands);
     }
     return skip+1;
 }

@@ -1,1 +1,4 @@
-Print("test")
+Print("pre tests")
+if 1 {
+Print("tests")
+}

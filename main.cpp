@@ -1,6 +1,11 @@
 #include "lexer.h"
 #include "parser.h"
 
+class Command;
+
+#include <vector>
+#include <string>
+#include <map>
 #include <fstream>
 #include <iostream>
 
@@ -18,6 +23,7 @@ int main(int argc, char** argv) {
     cout << "lexed!" << endl;
 
     Parser parser = Parser();
+    parser.initializeMap();
     parser.parse(lines);
     cout << "parsed!" << endl;
 

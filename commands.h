@@ -37,16 +37,16 @@ public:
 
 class LoopCommand : public Command {
 public:
-    LoopCommand() : p() {}
+    void initializeParser(Parser* p) {p = p;}
     virtual double execute(vector<vector<string>> lexed, int line);
     virtual double loop(string cond) = 0;
 private:
-    Parser p;
+    Parser* p;
 };
 
 class WhileCommand : public LoopCommand {
 public:
-    WhileCommand() : exp(), LoopCommand() {}
+    WhileCommand() : exp(){}
     virtual double loop(string cond);
 private:
     ExpressionHandler exp;
@@ -54,7 +54,7 @@ private:
 
 class IfCommand : public LoopCommand {
 public:
-    IfCommand() : exp(), prevCond(""), times(0), LoopCommand() {}
+    IfCommand() : exp(), prevCond(""), times(0) {}
     virtual double loop(string cond);
 private:
     ExpressionHandler exp;

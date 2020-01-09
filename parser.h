@@ -12,7 +12,8 @@ class Command;
 class Parser {
 
 public:
-    Parser();
+    Parser() : commands() {}
+    void initializeMap();
     void parse(vector<vector<string>> lexed);
 
 private:

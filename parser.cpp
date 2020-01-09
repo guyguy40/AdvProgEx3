@@ -1,13 +1,6 @@
 #include "parser.h"
 #include <iostream>
 
-Parser::Parser() : commands() {
-    commands["Print"] = new PrintCommand();
-    commands["Sleep"] = new SleepCommand();
-    //commands["while"] = new WhileCommand();
-    //commands["if"] = new IfCommand();
-}
-
 void Parser::parse(vector<vector<string>> lexed) {
     int line = 0;
     while(line < lexed.size()) {
@@ -18,8 +11,27 @@ void Parser::parse(vector<vector<string>> lexed) {
         cout << "in parse loop! " << lexed[line][0] << endl;
         string startVal = string(lexed[line][0]);
         Command* toExecute;
-        if(commands.count(startVal)) toExecute = commands[startVal];
-        else {toExecute = commands[string("var")];}
-        line += toExecute->execute(lexed,line);
+        if(commands.count(startVal)) {
+            toExecute = commands[startVal];
+            line += toExecute->execute(lexed,line);
+        }
+        else {
+            cout << "at default! Value is " << startVal << endl;
+            return;
+            //toExecute = commands[string("var")];
+        }
     }
+}
+
+void Parser::initializeMap() {
+    commands["Print"] = new PrintCommand();
+    commands["Sleep"] = new SleepCommand();
+
+    WhileCommand* whCmd = new WhileCommand();
+    whCmd->initializeParser(this);
+    commands["while"] = whCmd;
+
+    IfCommand* ifCmd = new IfCommand();
+    ifCmd->initializeParser(this);
+    commands["if"] = ifCmd;
 }
