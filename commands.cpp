@@ -15,6 +15,7 @@ double ConnectCommand::execute(vector<vector<string>> lexed, int line) {
 }
 
 double LoopCommand::execute(vector<vector<string>> lexed, int line) {
+    cout << "in loop command!" << endl;
     string cond = lexed[line][1];
     int skip = 1;
     int opens = 0;
@@ -23,6 +24,7 @@ double LoopCommand::execute(vector<vector<string>> lexed, int line) {
         if(lexed[line+skip][0] != "}") opens --;
         skip++;
     }
+    cout << "read everything!" << endl;
 
     vector<vector<string>> commands;
     for(int i = line+1; i<line+skip; i++) {
@@ -30,6 +32,7 @@ double LoopCommand::execute(vector<vector<string>> lexed, int line) {
     }
 
     while(loop(cond)) {
+        cout << "running parse in loop!" << endl;
         p.parse(commands);
     }
     return skip+1;

@@ -6,6 +6,7 @@ Parser::Parser() : commands() {
     commands["Sleep"] = new SleepCommand();
     commands["while"] = new WhileCommand();
     commands["if"] = new IfCommand();
+    commands["var"] = new VariableCommand();
 }
 
 void Parser::parse(vector<vector<string>> lexed) {
@@ -13,7 +14,8 @@ void Parser::parse(vector<vector<string>> lexed) {
     //while(line < lexed.size()) {
         if(lexed[line].size() < 1) {
             line++;
-            continue;
+            //continue;
+            return;
         }
         cout << "in parse loop! " << lexed[line][0] << endl;
         string startVal = string(lexed[line][0]);
