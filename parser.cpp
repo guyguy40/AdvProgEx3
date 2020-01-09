@@ -8,24 +8,31 @@ void Parser::parse(vector<vector<string>> lexed) {
             line++;
             continue;
         }
-        cout << "in parse loop! " << lexed[line][0] << endl;
         string startVal = string(lexed[line][0]);
+        cout << "in parse loop! " << startVal << endl;
         Command* toExecute;
-        if(commands.count(startVal)) {
+        cout << "searching for command!" << endl;
+        for(auto elem : commands)
+        {
+           std::cout << elem.first << " " << elem.second << "\n";
+        }
+
+        if(commands.find(startVal) != commands.end()) {
+            cout << "found command!" << endl;
             toExecute = commands[startVal];
-            line += toExecute->execute(lexed,line);
         }
         else {
             cout << "at default! Value is " << startVal << endl;
-            return;
-            //toExecute = commands[string("var")];
+            toExecute = commands[string("var")];
         }
+        line += toExecute->execute(lexed,line);
     }
 }
 
 void Parser::initializeMap() {
     commands["Print"] = new PrintCommand();
     commands["Sleep"] = new SleepCommand();
+    commands["var"] = new VariableCommand();
 
     WhileCommand* whCmd = new WhileCommand();
     whCmd->initializeParser(this);

@@ -1,4 +1,1 @@
-Print("pre tests")
-if 1 {
-Print("tests")
-}
+var x = 2

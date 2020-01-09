@@ -67,18 +67,32 @@ double VariableCommand::execute(vector<vector<string>> lexed, int line) {
     if(lexed[line][pos] == "var") pos++;
     string name = lexed[line][0];
 
+    cout << "var name: " << name << endl;
+    std::this_thread::sleep_for(std::chrono::seconds(3));
+
     int type = 0;
     if(lexed[line][pos+1] == "<-") type = 1;
     if(lexed[line][pos+1] == "->") type = 2;
 
+    cout << "var bind type: " << type << endl;
+    std::this_thread::sleep_for(std::chrono::seconds(3));
+
     if(type == 0) {
         double val = exp.handleDouble(lexed[line][pos+2]);
+
+        cout << "var value: " << val << endl;
+        std::this_thread::sleep_for(std::chrono::seconds(3));
+
         symb.valueBind(name, val);
     }
     else {
         string toBind;
         if(lexed[line][pos+2] == "sim") toBind = lexed[line][pos+3].substr(1, lexed[line][pos+3].size() - 2);
         else {toBind = lexed[line][pos+2];}
+
+        cout << "var value: " << toBind << endl;
+        std::this_thread::sleep_for(std::chrono::seconds(3));
+
         if(type == 1) symb.leftBind(name, toBind);
         else {symb.rightBind(name, toBind);}
     }
