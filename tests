@@ -1,0 +1,8 @@
+if 1 {
+Print("test")
+Sleep(1000)
+Print("test2")
+}
+if 0 {
+Print("fuck")
+}

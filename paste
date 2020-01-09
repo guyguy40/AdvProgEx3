@@ -1,0 +1,1 @@
+g++ -o prog math.o symbolTable.o commands.o lexer.o parser.o main.o
