@@ -35,7 +35,7 @@ double LoopCommand::execute(vector<vector<string>> lexed, int line) {
 }
 
 double WhileCommand::loop(string cond) {
-    return this->exp.handleDouble(cond);
+    return exp.handleDouble(cond);
 }
 
 double IfCommand::loop(string cond) {
@@ -43,17 +43,17 @@ double IfCommand::loop(string cond) {
     prevCond = cond;
     if(times > 0) return 0;
     times++;
-    return this->exp.handleDouble(cond);
+    return exp.handleDouble(cond);
 }
 
 double PrintCommand::execute(vector<vector<string>> lexed, int line) {
     cout << "print command!" << endl;
-    cout << this->exp.handleString(lexed[line][1]) << endl;
+    cout << exp.handleString(lexed[line][1]) << endl;
     return 1;
 }
 
 double SleepCommand::execute(vector<vector<string>> lexed, int line) {
-    int mils = this->exp.handleDouble(lexed[line][1]);
+    int mils = exp.handleDouble(lexed[line][1]);
     std::this_thread::sleep_for(std::chrono::milliseconds(mils));
     return 1;
 }
